@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RITME by Project Ilmi — The Operating System for Recurring Community Fitness</title>
+  
+  <!-- Meta & OpenGraph -->
+  <meta name="description" content="Pitch Deck & Prototype: RITME mengotomasi seluruh siklus kelas olahraga berulang (Poundfit, Yoga, Pilates, Running Club). Dari pendaftaran QRIS, WhatsApp ticketing, pencarian foto wajah instan via SnapFind AI, hingga retensi member.">
+  <meta property="og:title" content="RITME — The Operating System for Recurring Community Fitness">
+  <meta property="og:description" content="Invest in the future of community fitness. Zero upfront cost, 2.5% take rate, powered by AI Biometrics and WhatsApp Cloud API.">
+  <meta property="og:url" content="https://projectilmi.web.id">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Syne (Display), Plus Jakarta Sans (UI), JetBrains Mono (Financial/Tech) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#08090B',
+            canvas: '#0D0F12',
+            surface: {
+              DEFAULT: '#13161C',
+              elevated: '#1A1E26',
+              highlight: '#232934'
+            },
+            border: {
+              DEFAULT: '#1E232D',
+              light: '#2E3644'
+            },
+            volt: {
+              DEFAULT: '#D4FF00',
+              hover: '#C2EB00',
+              glow: 'rgba(212, 255, 0, 0.16)'
+            },
+            cyan: {
+              DEFAULT: '#00F0FF',
+              glow: 'rgba(0, 240, 255, 0.16)'
+            },
+            coral: '#FF3366',
+            emerald: '#10B981'
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Emil Kowalski & Impeccable Design Engineering Style System -->
+  <style>
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background-color: #08090B;
+      color: #F8FAFC;
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      letter-spacing: -0.011em;
+    }
+
+    ::selection {
+      background: #D4FF00;
+      color: #08090B;
+    }
+
+    /* Emil Kowalski Button & Pressable Feedback */
+    .btn-pressable {
+      transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    }
+    .btn-pressable:active {
+      transform: scale(0.97);
+    }
+
+    .card-pressable {
+      transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+    }
+    .card-pressable:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Subtle High-Fidelity Grid Texture (Zero Blur Slop) */
+    .bg-engineered-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    }
+
+    /* Precise Border Rings */
+    .ring-volt-subtle {
+      box-shadow: 0 0 0 1px rgba(212, 255, 0, 0.25), 0 10px 30px -10px rgba(212, 255, 0, 0.15);
+    }
+    .ring-cyan-subtle {
+      box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.25), 0 10px 30px -10px rgba(0, 240, 255, 0.15);
+    }
+
+    /* Custom subtle scrollbar */
+    .clean-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .clean-scrollbar::-webkit-scrollbar-thumb {
+      background: #232934;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+
+<body class="bg-obsidian text-slate-100 antialiased min-h-screen flex flex-col justify-between bg-engineered-grid">
+
+  <!-- ================= TOP INVESTOR & EXECUTIVE NAV ================= -->
+  <header class="sticky top-0 z-50 bg-obsidian/95 backdrop-blur-md border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-lg bg-volt flex items-center justify-center font-display font-extrabold text-obsidian text-base group-hover:rotate-6 transition-transform">
+          R
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-display font-extrabold text-lg tracking-tight text-white">RITME</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-elevated text-volt border border-volt/30 font-semibold">
+              by Project Ilmi
+            </span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono tracking-wider -mt-1">COMMUNITY FITNESS OS</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-300">
+        <a href="#opportunity" class="hover:text-volt transition-colors">Market & TAM</a>
+        <a href="#comparison" class="hover:text-volt transition-colors">Cara Lama vs RITME</a>
+        <a href="#ai-whatsapp" class="hover:text-cyan transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+          AI & WhatsApp
+        </a>
+        <a href="#business-model" class="hover:text-volt transition-colors">Business Model (2.5%)</a>
+        <a href="#interactive-preview" class="hover:text-volt transition-colors">Live Simulation</a>
+        <a href="#founder" class="hover:text-volt transition-colors">Founder</a>
+      </nav>
+
+      <!-- Action Group -->
+      <div class="flex items-center gap-3">
+        <button onclick="openDocTab('prd')" class="hidden sm:flex items-center gap-1.5 text-xs font-mono font-medium text-slate-300 bg-surface px-3 py-1.5 rounded-full border border-border hover:border-slate-500 transition-colors btn-pressable">
+          <span>PRD & TRD Docs</span>
+          <svg class="w-3.5 h-3.5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </button>
+
+        <a href="#investor-cta" class="bg-volt hover:bg-volt-hover text-obsidian px-5 py-2 rounded-full font-bold text-xs tracking-tight transition-all btn-pressable ring-volt-subtle">
+          Pitch & Early Access
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- ================= HERO SECTION (INVESTOR PITCH HOOK) ================= -->
+    <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-border overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Live Pitch Tagline -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-elevated border border-border text-xs font-mono text-slate-300 mb-8">
+          <span class="w-2 h-2 rounded-full bg-volt animate-ping"></span>
+          <span class="text-volt font-bold">PRE-SEED PITCH</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">The Operating System for Recurring Community Fitness</span>
+        </div>
+
+        <!-- Main Headline -->
+        <div class="max-w-4xl">
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
+            Mengubah Komunitas Olahraga Menjadi <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-volt via-white to-cyan">
+              Micro-Business Mandiri & Skalabel.
+            </span>
+          </h1>
+          <p class="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mb-10">
+            <strong>45.000+ komunitas olahraga berulang</strong> di Indonesia (Poundfit, Yoga, Pilates, Running Club) masih terjebak mengelola pendaftaran via chat WhatsApp manual, transfer bank tercecer, dan foto dokumentasi 600+ yang terlupakan di Google Drive. 
+            <strong>RITME</strong> mengotomasi semuanya dengan <strong>Zero Upfront Cost</strong> dan monetisasi <strong>2.5% per transaksi</strong>.
+          </p>
+
+          <!-- Executive CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a href="#interactive-preview" class="bg-volt hover:bg-volt-hover text-obsidian px-8 py-3.5 rounded-full font-bold text-sm tracking-tight transition-all btn-pressable ring-volt-subtle flex items-center justify-center gap-2">
+              Buka Interactive Prototype
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+            <button onclick="openDocTab('prd')" class="bg-surface hover:bg-surface-elevated text-white border border-border px-7 py-3.5 rounded-full font-semibold text-sm transition-colors btn-pressable flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              Pelajari PRD & Arsitektur Lengkap
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Anchors (TAM & Traction Proof) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-border">
+          <div class="bg-surface p-5 rounded-2xl border border-border card-pressable">
+            <div class="font-mono text-xs uppercase tracking-wider text-slate-400">Total Market Size (TAM)</div>
+            <div class="font-mono text-2xl sm:text-3xl font-extrabold text-white mt-1">$2.4 Miliar</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Wellness & sports economy Indonesia (8.9% CAGR)</div>
+          </div>
+
+          <div class="bg-surface p-5 rounded-2xl border border-border card-pressable">
+            <div class="font-mono text-xs uppercase tracking-wider text-volt">Target SOM (18 Bulan)</div>
+            <div class="font-mono text-2xl sm:text-3xl font-extrabold text-volt mt-1">1.500 Komunitas</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">3.9 Juta transaksi tiket • Rp 175M+ Gross GMV</div>
+          </div>
+
+          <div class="bg-surface p-5 rounded-2xl border border-border card-pressable">
+            <div class="font-mono text-xs uppercase tracking-wider text-cyan">Monetisasi Transaksi</div>
+            <div class="font-mono text-2xl sm:text-3xl font-extrabold text-cyan mt-1">2.5% Take Rate</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Rp 0 biaya langganan • Host bebas risiko di awal</div>
+          </div>
+
+          <div class="bg-surface p-5 rounded-2xl border border-border card-pressable">
+            <div class="font-mono text-xs uppercase tracking-wider text-emerald-400">Pencarian Foto Biometrik</div>
+            <div class="font-mono text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">&lt; 300 ms</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">SnapFind AI 512-D vectors via Cloudflare R2</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= MARKET OPPORTUNITY & "WHY NOW" ================= -->
+    <section id="opportunity" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+          <div class="max-w-2xl">
+            <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">THE MARKET OPPORTUNITY</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2">
+              Mengapa Sekarang Saat yang Tepat untuk RITME?
+            </h2>
+            <p class="text-slate-400 mt-3 text-sm sm:text-base leading-relaxed">
+              Tren olahraga Indonesia telah berevolusi dari keanggotaan gym statis ke komunitas dinamis berbasis kelas interaktif mingguan.
+            </p>
+          </div>
+          <div class="mt-4 md:mt-0 font-mono text-xs text-slate-400 bg-surface px-4 py-2 rounded-full border border-border">
+            Status: Fragmented & Unserved Market
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          
+          <div class="bg-surface p-7 rounded-3xl border border-border flex flex-col justify-between card-pressable">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-volt/10 text-volt flex items-center justify-center font-mono font-bold text-base mb-6">
+                01
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Booming Komunitas Olahraga Urban</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                Poundfit, Pilates, Yoga, dan Running Club meledak di kota-kota Indonesia. Komunitas menyewa studio per jam dan membuka kuota 20–40 peserta per sesi, 2–4 kali per minggu.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-border font-mono text-xs text-volt">
+              TAM: 45.000+ Komunitas Aktif di Seluruh Indonesia
+            </div>
+          </div>
+
+          <div class="bg-surface p-7 rounded-3xl border border-border flex flex-col justify-between card-pressable">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-cyan/10 text-cyan flex items-center justify-center font-mono font-bold text-base mb-6">
+                02
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Kegagalan Software Eksisting</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                Software gym global seperti Mindbody mengenakan biaya langganan tetap $150–$300/bulan yang tidak masuk akal untuk komunitas independen. Sedangkan tiket konser (Loket) memotong 5–10% tanpa fitur kelas berulang.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-border font-mono text-xs text-cyan">
+              Solusi RITME: 100% Free Setup + 2.5% Per Tiket
+            </div>
+          </div>
+
+          <div class="bg-surface p-7 rounded-3xl border border-border flex flex-col justify-between card-pressable">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-coral/10 text-coral flex items-center justify-center font-mono font-bold text-base mb-6">
+                03
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">The Virality Loop (Foto AI)</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                Member olahraga datang demi kesehatan dan eksistensi sosial. Ketika member mendapatkan foto aksinya dalam 10 detik setelah kelas, mereka langsung posting ke Instagram Stories, memicu pendaftar baru secara organik.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-border font-mono text-xs text-coral">
+              SnapFind AI: 4x Lipat Organik Sharing Rate
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= TABEL KOMPARASI: CARA LAMA VS RITME ================= -->
+    <section id="comparison" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">COMPETITIVE MATRIX</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Mengapa RITME Mengungguli Solusi Eksisting
+          </h2>
+          <p class="text-slate-400 mt-3 text-sm sm:text-base">
+            Perbandingan langsung antara metode konvensional (WhatsApp + Spreadsheet), platform tiket konser, dan RITME.
+          </p>
+        </div>
+
+        <!-- Responsive Comparison Table -->
+        <div class="bg-surface rounded-3xl border border-border overflow-hidden shadow-2xl">
+          <div class="overflow-x-auto clean-scrollbar">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-border bg-surface-elevated font-mono">
+                  <th class="py-4 px-6 text-slate-400 font-bold uppercase tracking-wider w-1/4">Dimensi Operasi</th>
+                  <th class="py-4 px-6 text-slate-400 font-bold uppercase tracking-wider w-1/4">Cara Konvensional (WA & GDrive)</th>
+                  <th class="py-4 px-6 text-slate-400 font-bold uppercase tracking-wider w-1/4">Platform Tiket Konser (Loket, dll)</th>
+                  <th class="py-4 px-6 text-volt font-bold uppercase tracking-wider w-1/4 bg-volt/5 border-l border-volt/20">
+                    ✨ RITME (by Project Ilmi)
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border text-slate-300">
+                
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Biaya Operasional Host</td>
+                  <td class="py-4 px-6 text-slate-400">Gratis, tetapi menghabiskan 15+ jam/minggu kerja admin manual.</td>
+                  <td class="py-4 px-6 text-coral font-medium">Potongan komisi besar: 5% - 10% per tiket.</td>
+                  <td class="py-4 px-6 text-volt font-bold bg-volt/5 border-l border-volt/20">
+                    GRATIS di muka (Rp 0) + hanya 2.5% per tiket berhasil.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Pendaftaran & Pembayaran</td>
+                  <td class="py-4 px-6 text-slate-400">Balas chat satu per satu, kirim rekening BCA, cek screenshot mutasi.</td>
+                  <td class="py-4 px-6">Web checkout generik tanpa siklus kelas mingguan.</td>
+                  <td class="py-4 px-6 text-white font-medium bg-volt/5 border-l border-volt/20">
+                    1-Klik Booking via Web PWA + Dynamic QRIS terverifikasi otomatis.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Distribusi Foto Dokumentasi</td>
+                  <td class="py-4 px-6 text-coral">Link Google Drive 600+ foto, kuota cepat penuh, peserta malas scroll.</td>
+                  <td class="py-4 px-6 text-slate-500">Tidak ada fitur foto.</td>
+                  <td class="py-4 px-6 text-cyan font-bold bg-volt/5 border-l border-volt/20">
+                    SnapFind AI: Selfie 1 detik, semua foto aksi langsung terdeteksi (&lt; 300ms).
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Notifikasi & Tiket WhatsApp</td>
+                  <td class="py-4 px-6 text-slate-400">Broadcast manual dari nomor admin, rawan diblokir WhatsApp.</td>
+                  <td class="py-4 px-6">Hanya kirim PDF lewat email (sering masuk spam).</td>
+                  <td class="py-4 px-6 text-emerald-400 font-bold bg-volt/5 border-l border-volt/20">
+                    WhatsApp Cloud API: Tiket Dynamic QR, pengingat H-2 jam & notif foto AI.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Absensi di Pintu Masuk</td>
+                  <td class="py-4 px-6 text-slate-400">Kertas absensi basah di meja, antre panjang verifikasi transfer.</td>
+                  <td class="py-4 px-6">Perlu sewa scanner barcode fisik.</td>
+                  <td class="py-4 px-6 text-white font-medium bg-volt/5 border-l border-volt/20">
+                    Scanner cepat kamera smartphone panitia + WhatsApp Self Check-in.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Retensi Member (Habit)</td>
+                  <td class="py-4 px-6 text-slate-500">Tidak ada. Member hilang setelah 1-2 sesi.</td>
+                  <td class="py-4 px-6 text-slate-500">Tidak ada (transaksi sekali putus).</td>
+                  <td class="py-4 px-6 text-volt font-bold bg-volt/5 border-l border-volt/20">
+                    Weekly Streak Flame 🔥, Milestone Badges (5x, 20x) & Voucher Sponsor.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="py-4 px-6 font-bold text-white">Bagi Hasil Instruktur & P&L</td>
+                  <td class="py-4 px-6 text-slate-400">Hitung kalkulator manual di akhir bulan, rawan salah hitung.</td>
+                  <td class="py-4 px-6 text-slate-500">Tidak didukung.</td>
+                  <td class="py-4 px-6 text-white font-medium bg-volt/5 border-l border-volt/20">
+                    Smart Splitter: Auto kalkulasi fee coach 60%, sewa venue & laba bersih.
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= INTEGRASI AI (SNAPFIND) & WHATSAPP PIPELINE ================= -->
+    <section id="ai-whatsapp" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mb-14">
+          <span class="font-mono text-xs uppercase tracking-widest text-cyan font-bold">INTELLIGENT INFRASTRUCTURE</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2">
+            Kombinasi Biometric AI & WhatsApp Cloud API
+          </h2>
+          <p class="text-slate-400 mt-3 text-base leading-relaxed">
+            Dua pilar teknologi kunci yang mengubah pengalaman peserta dari yang membosankan menjadi magis dan serba otomatis.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+          
+          <!-- Pillar A: SnapFind Biometric AI -->
+          <div class="bg-surface p-8 rounded-3xl border border-border relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute -right-10 -top-10 w-48 h-48 bg-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/10 border border-cyan/30 text-cyan text-xs font-mono font-bold mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+                SNAPFIND BIOMETRIC ENGINE
+              </div>
+              <h3 class="font-display text-2xl font-bold text-white mb-3">
+                Zero Egress AI Facial Search
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                SnapFind AI mengubah ratusan foto mentah fotografer menjadi aset personal. Menggunakan model MobileFaceNet untuk menghasilkan vektor wajah 512-dimensi yang diindeks dengan HNSW di database PostgreSQL (`pgvector`).
+              </p>
+
+              <!-- Flow Step Indicators -->
+              <div class="space-y-3 font-mono text-xs">
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border flex items-center justify-between">
+                  <span class="text-slate-300">1. Bulk Upload Fotografer</span>
+                  <span class="text-cyan font-bold">Cloudflare R2 ($0 Egress)</span>
+                </div>
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border flex items-center justify-between">
+                  <span class="text-slate-300">2. Vectorization & Face Crops</span>
+                  <span class="text-cyan font-bold">512-D Normalized Vector</span>
+                </div>
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border flex items-center justify-between">
+                  <span class="text-slate-300">3. 1-Selfie Search Query</span>
+                  <span class="text-volt font-bold">&lt; 250ms Cosine Match</span>
+                </div>
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border flex items-center justify-between">
+                  <span class="text-slate-300">4. Instagram Story Ready</span>
+                  <span class="text-emerald-400 font-bold">9:16 Watermarked Export</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-border flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Privasi Wajah: Zero Permanent Selfie Storage</span>
+              <span class="text-cyan">GDPR / PDP Compliant</span>
+            </div>
+          </div>
+
+          <!-- Pillar B: WhatsApp Automation -->
+          <div class="bg-surface p-8 rounded-3xl border border-border relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute -right-10 -top-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                WHATSAPP CLOUD API GATEWAY
+              </div>
+              <h3 class="font-display text-2xl font-bold text-white mb-3">
+                High-Conversion Chat Delivery
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Orang Indonesia tidak membaca email promosi, tetapi 98% membuka chat WhatsApp dalam 5 menit. RITME mengintegrasikan tiket dan notifikasi langsung ke aplikasi perpesanan utama mereka.
+              </p>
+
+              <!-- Live WhatsApp Chat Simulation Mockup -->
+              <div class="bg-[#0b141a] p-4 rounded-2xl border border-border text-xs space-y-3 font-sans shadow-lg">
+                <div class="flex items-center justify-between border-b border-border/40 pb-2 text-[11px] text-slate-400 font-mono">
+                  <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    RITME Verified Community Bot
+                  </span>
+                  <span>Official Business API</span>
+                </div>
+
+                <div class="bg-[#1f2c34] p-3 rounded-xl text-slate-200">
+                  <p class="font-semibold text-white">🎟️ Tiket Kelas Terkonfirmasi!</p>
+                  <p class="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                    Halo Nadya, pembayaran QRIS sukses. Tiket <strong>Poundfit Sunset Glow</strong> telah aktif.<br>
+                    • Kode: <span class="text-volt font-mono font-bold">RITME-POUND-7892</span><br>
+                    • Venue: Studio Kediri Fitness Hub (Gate A)
+                  </p>
+                </div>
+
+                <div class="bg-[#1f2c34] p-3 rounded-xl text-slate-200">
+                  <p class="font-semibold text-cyan">📸 Foto Aksi Kamu Sudah Ready!</p>
+                  <p class="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                    Fotografer baru saja mengunggah foto kelas tadi malam. Klik link ini untuk scan wajahmu dan download fotomu: <span class="text-cyan underline">ritme.id/p/7892</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-border flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Delivery Rate: 99.4%</span>
+              <span class="text-emerald-400">Zero App Install Barrier</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BUSINESS MODEL & PRICING ================= -->
+    <section id="business-model" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">MONETIZATION STRATEGY</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            Model Bisnis 2.5% Take Rate
+          </h2>
+          <p class="text-slate-400 mt-3 text-sm sm:text-base">
+            Tanpa biaya tetap bulanan yang memberatkan komunitas, RITME bertumbuh seiring dengan bertambahnya jumlah peserta kelas.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          
+          <!-- Plan 1: Community Starter -->
+          <div class="bg-surface p-8 rounded-3xl border border-border flex flex-col justify-between card-pressable">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono uppercase text-slate-400 font-bold">COMMUNITY STARTER</span>
+                <span class="text-[10px] font-mono bg-surface-elevated text-slate-300 px-2.5 py-1 rounded-full border border-border">
+                  UNTUK KOMUNITAS INDEPENDEN
+                </span>
+              </div>
+              <div class="font-display text-3xl font-extrabold text-white mb-2">Rp 0</div>
+              <div class="text-xs text-volt font-mono font-bold mb-6">+ 2.5% per tiket berhasil</div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                Cocok untuk instruktur atau komunitas yang baru memulai kelas mingguan (1–3 sesi per minggu).
+              </p>
+
+              <ul class="space-y-3 text-xs text-slate-300 border-t border-border pt-6">
+                <li class="flex items-center gap-2">✓ Jadwal kelas berulang tak terbatas</li>
+                <li class="flex items-center gap-2">✓ Dynamic QRIS otomatis (konfirmasi instan)</li>
+                <li class="flex items-center gap-2">✓ WhatsApp dynamic QR ticket delivery</li>
+                <li class="flex items-center gap-2">✓ SnapFind AI: 1.000 foto/bulan</li>
+                <li class="flex items-center gap-2">✓ Fast QR scanner panitia di smartphone</li>
+                <li class="flex items-center gap-2">✓ Auto kalkulasi laba bersih per sesi</li>
+              </ul>
+            </div>
+
+            <a href="#investor-cta" class="mt-8 block text-center bg-surface-elevated hover:bg-slate-800 text-white border border-border py-3 rounded-full text-xs font-bold btn-pressable">
+              Mulai Gratis Sekarang
+            </a>
+          </div>
+
+          <!-- Plan 2: Studio Pro (Highlighted) -->
+          <div class="bg-surface p-8 rounded-3xl border-2 border-volt relative flex flex-col justify-between card-pressable ring-volt-subtle">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-volt text-obsidian px-4 py-0.5 rounded-full text-[10px] font-mono font-extrabold tracking-wider uppercase">
+              PALING POPULER UNTUK STUDIO
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4 mt-2">
+                <span class="text-xs font-mono uppercase text-volt font-bold">STUDIO & MULTI-CLASS</span>
+                <span class="text-[10px] font-mono bg-volt/10 text-volt px-2.5 py-1 rounded-full border border-volt/30 font-bold">
+                  PRO TIER
+                </span>
+              </div>
+              <div class="font-display text-3xl font-extrabold text-white mb-2">Rp 299.000 <span class="text-sm font-normal text-slate-400">/ bulan</span></div>
+              <div class="text-xs text-volt font-mono font-bold mb-6">+ 1.8% per tiket (Hemat 28%)</div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                Untuk pengelola studio atau komunitas mapan dengan banyak instruktur dan 10+ kelas rutin per minggu.
+              </p>
+
+              <ul class="space-y-3 text-xs text-slate-200 border-t border-border pt-6">
+                <li class="flex items-center gap-2 font-medium">✓ Semua fitur Community Starter</li>
+                <li class="flex items-center gap-2 text-volt font-bold">✓ SnapFind AI UNLIMITED Foto</li>
+                <li class="flex items-center gap-2">✓ Custom Sender WhatsApp (Nama Studio)</li>
+                <li class="flex items-center gap-2">✓ Multi-instruktur dengan auto split payout</li>
+                <li class="flex items-center gap-2">✓ Watermark logo studio di preset IG Story</li>
+                <li class="flex items-center gap-2">✓ Prioritas antrean broadcast pesan</li>
+              </ul>
+            </div>
+
+            <a href="#investor-cta" class="mt-8 block text-center bg-volt hover:bg-volt-hover text-obsidian py-3.5 rounded-full text-xs font-extrabold btn-pressable">
+              Daftar Early Partner Pro
+            </a>
+          </div>
+
+          <!-- Plan 3: Sponsor & Brand Network -->
+          <div class="bg-surface p-8 rounded-3xl border border-border flex flex-col justify-between card-pressable">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono uppercase text-cyan font-bold">BRAND PARTNERSHIP</span>
+                <span class="text-[10px] font-mono bg-cyan/10 text-cyan px-2.5 py-1 rounded-full border border-cyan/30 font-bold">
+                  PERKS REVENUE
+                </span>
+              </div>
+              <div class="font-display text-3xl font-extrabold text-white mb-2">15% Take</div>
+              <div class="text-xs text-cyan font-mono font-bold mb-6">dari nilai voucher/redemption sponsor</div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                Untuk brand minuman kesehatan, apparel olahraga, dan suplemen yang ingin mendistribusikan voucher tertarget ke peserta yang terbukti hadir di kelas.
+              </p>
+
+              <ul class="space-y-3 text-xs text-slate-300 border-t border-border pt-6">
+                <li class="flex items-center gap-2">✓ Penempatan voucher digital terverifikasi</li>
+                <li class="flex items-center gap-2">✓ Hanya bisa diklaim oleh peserta yang scan QR hadir</li>
+                <li class="flex items-center gap-2">✓ Dashboard analitik konversi real-time</li>
+                <li class="flex items-center gap-2">✓ Distribusi sampling produk di lokasi event</li>
+              </ul>
+            </div>
+
+            <a href="#investor-cta" class="mt-8 block text-center bg-surface-elevated hover:bg-slate-800 text-white border border-border py-3 rounded-full text-xs font-bold btn-pressable">
+              Hubungi Tim Partnership
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= LIVE INTERACTIVE LAB (EMIL KOWALSKI CRAFT) ================= -->
+    <section id="interactive-preview" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">INTERACTIVE PRODUCT LAB</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2">
+              Uji Coba Pengalaman Langsung
+            </h2>
+            <p class="text-slate-400 mt-2 text-sm max-w-xl">
+              Simulasi interaktif alur kerja RITME dari sudut pandang peserta dan pengelola komunitas.
+            </p>
+          </div>
+
+          <!-- Tab Selector -->
+          <div class="flex items-center gap-2 mt-6 md:mt-0 p-1.5 bg-surface rounded-full border border-border overflow-x-auto clean-scrollbar">
+            <button onclick="switchTab('booking')" id="tab-btn-booking" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-volt text-obsidian btn-pressable">
+              1. Booking & E-Pass
+            </button>
+            <button onclick="switchTab('snapfind')" id="tab-btn-snapfind" class="px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white btn-pressable">
+              2. SnapFind AI Foto
+            </button>
+            <button onclick="switchTab('streak')" id="tab-btn-streak" class="px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white btn-pressable">
+              3. Habit & Streaks
+            </button>
+            <button onclick="switchTab('finance')" id="tab-btn-finance" class="px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white btn-pressable">
+              4. Bagi Hasil 2.5%
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: BOOKING & SLOTS -->
+        <div id="tab-booking" class="block">
+          <div class="grid lg:grid-cols-12 gap-6">
+            
+            <div class="lg:col-span-7 bg-surface p-6 sm:p-8 rounded-3xl border border-border">
+              <div class="flex items-center justify-between mb-6">
+                <div>
+                  <span class="text-xs font-mono text-volt uppercase tracking-wider font-bold">JADWAL BERULANG AKTIF</span>
+                  <h3 class="text-xl font-bold text-white mt-0.5">Poundfit Sunset Glow — Batch #42</h3>
+                  <p class="text-xs text-slate-400">Selasa, 19:00 - 20:15 WIB • Studio Kediri Fitness Hub</p>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-slate-400">Instruktur</div>
+                  <div class="text-sm font-bold text-white">Pro Cindy (Licensed)</div>
+                </div>
+              </div>
+
+              <!-- Ticket Pass Options -->
+              <div class="space-y-3 mb-6">
+                <label class="flex items-center justify-between p-4 rounded-2xl border border-volt/40 bg-volt/5 cursor-pointer hover:border-volt transition-colors">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="ticket_type" value="single" checked onchange="updateBookingCalc()" class="accent-volt w-4 h-4">
+                    <div>
+                      <div class="text-sm font-bold text-white">Single Session Pass (1x Masuk)</div>
+                      <div class="text-xs text-slate-400">Termasuk pinjaman Ripstix + Air Mineral + Foto AI</div>
+                    </div>
+                  </div>
+                  <div class="font-mono font-bold text-volt text-sm">Rp 45.000</div>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-2xl border border-border bg-obsidian cursor-pointer hover:border-slate-500 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="ticket_type" value="multi" onchange="updateBookingCalc()" class="accent-volt w-4 h-4">
+                    <div>
+                      <div class="text-sm font-bold text-white flex items-center gap-2">
+                        Monthly Pass (4x Sesi)
+                        <span class="text-[10px] font-mono bg-coral/20 text-coral px-2 py-0.5 rounded-full font-bold">HEMAT 15%</span>
+                      </div>
+                      <div class="text-xs text-slate-400">Berlaku 45 hari di semua kelas komunitas</div>
+                    </div>
+                  </div>
+                  <div class="font-mono font-bold text-white text-sm">Rp 150.000</div>
+                </label>
+              </div>
+
+              <!-- Real-time Quota Bar -->
+              <div class="bg-obsidian p-4 rounded-2xl border border-border mb-6">
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-400">Kuota Terisi: <strong class="text-white" id="booked-seats">26</strong> / 30 Peserta</span>
+                  <span class="text-coral font-bold font-mono">SISA 4 SLOT LAGI!</span>
+                </div>
+                <div class="w-full bg-surface-elevated h-2.5 rounded-full overflow-hidden">
+                  <div class="bg-volt h-full rounded-full transition-all duration-500" style="width: 86%;"></div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1">NAMA PESERTA</label>
+                  <input type="text" id="buyer-name" value="Nadya Safira" class="w-full bg-obsidian border border-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-volt font-medium">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1">NO. WHATSAPP (TIKET QR)</label>
+                  <input type="text" id="buyer-wa" value="081234567890" class="w-full bg-obsidian border border-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-volt font-mono">
+                </div>
+              </div>
+
+              <button onclick="simulateBookingCheckout()" class="w-full bg-volt hover:bg-volt-hover text-obsidian py-3.5 rounded-full font-bold text-sm tracking-tight transition-all btn-pressable ring-volt-subtle">
+                Bayar Instan via QRIS (<span id="btn-price-display">Rp 45.000</span>)
+              </button>
+            </div>
+
+            <!-- Right: Interactive Digital Ticket -->
+            <div class="lg:col-span-5 bg-surface-elevated p-6 sm:p-8 rounded-3xl border border-border flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute -right-8 -top-8 w-32 h-32 bg-volt/10 rounded-full blur-2xl pointer-events-none"></div>
+
+              <div>
+                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                  <span class="text-xs font-mono uppercase text-slate-400">DIGITAL E-PASS</span>
+                  <span class="text-xs font-mono bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded-full font-bold border border-emerald-500/30">
+                    STATUS: CONFIRMED
+                  </span>
+                </div>
+
+                <div class="bg-obsidian p-5 rounded-2xl border border-border text-center mb-5">
+                  <div class="w-36 h-36 mx-auto bg-white p-2 rounded-xl flex items-center justify-center mb-3 shadow-inner">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RITME-PASS-POUND-2026-NADYASAFIRA" alt="QR Ticket" class="w-full h-full object-contain">
+                  </div>
+                  <div class="font-mono text-xs font-bold text-volt tracking-widest" id="ticket-code-display">
+                    RITME-POUND-7892
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Tunjukkan ke scanner panitia di pintu studio</div>
+                </div>
+
+                <div class="space-y-2 text-xs">
+                  <div class="flex justify-between py-1 border-b border-border/50">
+                    <span class="text-slate-400">Nama Peserta</span>
+                    <span class="font-bold text-white" id="card-name-display">Nadya Safira</span>
+                  </div>
+                  <div class="flex justify-between py-1 border-b border-border/50">
+                    <span class="text-slate-400">Paket</span>
+                    <span class="font-bold text-white" id="card-pass-display">Single Drop-in</span>
+                  </div>
+                  <div class="flex justify-between py-1 border-b border-border/50">
+                    <span class="text-slate-400">Check-in Gate</span>
+                    <span class="font-mono text-cyan font-bold">Studio Gate A (Open 18:30)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-slate-400">
+                <span>Auto-sync ke WhatsApp</span>
+                <span class="text-emerald-400 font-bold flex items-center gap-1 font-mono">
+                  ✓ Terkirim Otomatis
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 2: SNAPFIND AI PHOTO DELIVERY -->
+        <div id="tab-snapfind" class="hidden">
+          <div class="grid lg:grid-cols-12 gap-6">
+            
+            <div class="lg:col-span-5 bg-surface p-6 sm:p-8 rounded-3xl border border-border flex flex-col justify-between">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/10 border border-cyan/30 text-cyan text-xs font-mono font-bold mb-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+                  SNAPFIND BIOMETRICS ENGINE
+                </div>
+                <h3 class="font-display text-2xl font-bold text-white mb-3">
+                  Upload 1x Selfie, Temukan Semua Fotomu.
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                  Fotografer selesai mengunggah <strong>450 foto</strong> dokumentasi kelas tadi malam. Tidak perlu scroll satu per satu! Ambil selfie atau pilih foto profil Anda untuk pencarian instan berbasis kemiripan wajah.
+                </p>
+
+                <div class="bg-obsidian p-4 rounded-2xl border border-border mb-6">
+                  <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-surface-elevated border-2 border-dashed border-cyan flex items-center justify-center overflow-hidden">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" alt="Selfie sample" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                      <div class="text-xs font-mono text-cyan font-bold">REFERENSI WAJAH ANDA</div>
+                      <div class="text-xs text-white font-medium">Nadya_Selfie_FaceID.jpg</div>
+                      <div class="text-[11px] text-slate-400 font-mono">Embedding 512-D MobileFaceNet</div>
+                    </div>
+                  </div>
+                </div>
+
+                <button onclick="runFaceSearchSim()" id="btn-scan-face" class="w-full bg-cyan hover:bg-cyan/90 text-obsidian py-3.5 rounded-full font-bold text-sm tracking-tight transition-all btn-pressable ring-cyan-subtle flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  Scan & Temukan Foto Saya (&lt; 300ms)
+                </button>
+              </div>
+
+              <div class="mt-8 pt-4 border-t border-border flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>Zero Storage Overhead</span>
+                <span class="text-slate-300">pgvector HNSW Cosine</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-surface p-6 sm:p-8 rounded-3xl border border-border">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <span class="text-xs font-mono text-slate-400">HASIL PENCOCOKAN WAJAH</span>
+                  <h4 class="text-base font-bold text-white flex items-center gap-2">
+                    Ditemukan <span id="photo-match-count" class="text-volt font-mono">6 Foto</span> Aksi Anda!
+                  </h4>
+                </div>
+                <div class="text-xs font-mono bg-obsidian px-3 py-1 rounded-full border border-border text-slate-300">
+                  Akurasi: <strong class="text-cyan">99.4% Match</strong>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="group relative rounded-xl overflow-hidden aspect-[4/5] bg-obsidian border border-border">
+                  <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=80" alt="Poundfit photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
+                  <div class="absolute top-2 left-2 bg-obsidian/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-volt font-bold">99.8%</div>
+                  <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                    <span class="text-[10px] text-slate-300 font-mono">IMG_4821.JPG</span>
+                    <button class="bg-volt text-obsidian p-1 rounded-full text-[10px] font-bold px-2 btn-pressable">Unduh</button>
+                  </div>
+                </div>
+
+                <div class="group relative rounded-xl overflow-hidden aspect-[4/5] bg-obsidian border border-border">
+                  <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop&q=80" alt="Yoga photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
+                  <div class="absolute top-2 left-2 bg-obsidian/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-volt font-bold">98.9%</div>
+                  <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                    <span class="text-[10px] text-slate-300 font-mono">IMG_4835.JPG</span>
+                    <button class="bg-volt text-obsidian p-1 rounded-full text-[10px] font-bold px-2 btn-pressable">Unduh</button>
+                  </div>
+                </div>
+
+                <div class="group relative rounded-xl overflow-hidden aspect-[4/5] bg-obsidian border border-border">
+                  <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=400&auto=format&fit=crop&q=80" alt="Workout photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
+                  <div class="absolute top-2 left-2 bg-obsidian/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-volt font-bold">97.5%</div>
+                  <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                    <span class="text-[10px] text-slate-300 font-mono">IMG_4901.JPG</span>
+                    <button class="bg-volt text-obsidian p-1 rounded-full text-[10px] font-bold px-2 btn-pressable">Unduh</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 p-4 rounded-2xl bg-obsidian border border-border flex items-center justify-between">
+                <div>
+                  <div class="text-xs font-bold text-white">Preset Format Instagram Stories (9:16)</div>
+                  <div class="text-[11px] text-slate-400">Otomatis sertakan watermark komunitas & sponsor</div>
+                </div>
+                <button class="bg-surface-elevated hover:bg-slate-700 text-white border border-border px-4 py-1.5 rounded-full text-xs font-semibold btn-pressable">
+                  Ekspor ke Story
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 3: STREAK & RETENTION -->
+        <div id="tab-streak" class="hidden">
+          <div class="grid lg:grid-cols-12 gap-6">
+            
+            <div class="lg:col-span-6 bg-surface p-6 sm:p-8 rounded-3xl border border-border">
+              <span class="font-mono text-xs uppercase tracking-wider text-volt font-bold">RETENTION ENGINE</span>
+              <h3 class="font-display text-2xl font-bold text-white mt-1 mb-4">
+                Gamifikasi Kebiasaan Olahraga Mingguan
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                RITME mendorong retensi peserta lewat streak dan milestone badges. Member yang konsisten mendapatkan diskon sesi dan merchandise eksklusif.
+              </p>
+
+              <div class="bg-obsidian p-6 rounded-2xl border border-border mb-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-volt/10 text-volt flex items-center justify-center text-2xl">
+                      🔥
+                    </div>
+                    <div>
+                      <div class="font-mono text-xs text-slate-400">WEEKLY STREAK</div>
+                      <div class="text-xl font-bold text-white">6 Minggu Berturut-turut!</div>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono bg-volt text-obsidian font-bold px-2.5 py-1 rounded-full">
+                    REBEL TIER
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-6 gap-2 text-center text-xs font-mono">
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold">W1 ✓</div>
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold">W2 ✓</div>
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold">W3 ✓</div>
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold">W4 ✓</div>
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold">W5 ✓</div>
+                  <div class="p-2 rounded-xl bg-volt text-obsidian font-bold ring-2 ring-white">W6 🔥</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-3">
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border text-center">
+                  <div class="text-xl mb-1">⚡</div>
+                  <div class="text-xs font-bold text-white">First Beat</div>
+                  <div class="text-[10px] text-slate-400">Sesi ke-1</div>
+                </div>
+                <div class="bg-obsidian p-3.5 rounded-xl border border-volt/40 bg-volt/5 text-center">
+                  <div class="text-xl mb-1">🥊</div>
+                  <div class="text-xs font-bold text-volt">5x Rebel</div>
+                  <div class="text-[10px] text-slate-300">Tumbler Gratis</div>
+                </div>
+                <div class="bg-obsidian p-3.5 rounded-xl border border-border opacity-50 text-center">
+                  <div class="text-xl mb-1">👑</div>
+                  <div class="text-xs font-bold text-slate-300">20x Legend</div>
+                  <div class="text-[10px] text-slate-500">Terkunci (14 sesi lagi)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sponsor Voucher Perks -->
+            <div class="lg:col-span-6 bg-surface p-6 sm:p-8 rounded-3xl border border-border flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-xs uppercase tracking-wider text-cyan font-bold">DIGITAL PERKS HUB</span>
+                <h3 class="font-display text-2xl font-bold text-white mt-1 mb-4">
+                  Monetisasi Tambahan dari Brand Sponsor
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                  Peserta yang telah terverifikasi hadir scan QR di lokasi otomatis membuka voucher diskon produk sponsor.
+                </p>
+
+                <div class="space-y-3">
+                  <div class="p-4 rounded-2xl bg-obsidian border border-border flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center font-bold text-volt text-sm font-mono">
+                        ISO
+                      </div>
+                      <div>
+                        <div class="text-xs font-bold text-white">Free Isotonic Electrolyte Drink</div>
+                        <div class="text-[11px] text-slate-400">Sponsor: HydrateLab • Ambil di meja panitia</div>
+                      </div>
+                    </div>
+                    <button class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs px-3 py-1.5 rounded-full font-bold">
+                      TERVERIFIKASI
+                    </button>
+                  </div>
+
+                  <div class="p-4 rounded-2xl bg-obsidian border border-border flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center font-bold text-cyan text-sm font-mono">
+                        FIT
+                      </div>
+                      <div>
+                        <div class="text-xs font-bold text-white">Diskon 25% Activewear & Ripstix</div>
+                        <div class="text-[11px] text-slate-400">Sponsor: Athleisure ID • Berlaku 30 hari</div>
+                      </div>
+                    </div>
+                    <button class="bg-surface-elevated text-slate-200 border border-border text-xs px-3 py-1.5 rounded-full font-semibold btn-pressable">
+                      Salin Kode
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border flex justify-between text-xs text-slate-400 font-mono">
+                <span>Konversi Terverifikasi: 100% Hadir</span>
+                <span class="text-volt">Zero Physical Waste</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 4: FINANCE SPLITTER (WITH 2.5% TAKE RATE SHOWN) -->
+        <div id="tab-finance" class="hidden">
+          <div class="grid lg:grid-cols-12 gap-6">
+            
+            <div class="lg:col-span-7 bg-surface p-6 sm:p-8 rounded-3xl border border-border">
+              <span class="font-mono text-xs uppercase tracking-wider text-volt font-bold">TRANSPARENT UNIT ECONOMICS</span>
+              <h3 class="font-display text-2xl font-bold text-white mt-1 mb-2">
+                Kalkulator Split Finansial & Fee 2.5%
+              </h3>
+              <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                Geser simulasi peserta untuk melihat bagaimana RITME memotong fee platform 2.5%, mengalokasikan fee coach, dan menghitung laba bersih host.
+              </p>
+
+              <div class="bg-obsidian p-5 rounded-2xl border border-border mb-6">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="text-xs text-slate-300 font-medium">Jumlah Peserta Hadir Sesi Ini:</span>
+                  <span class="font-mono text-xl font-bold text-volt" id="slider-val">28 Peserta</span>
+                </div>
+                <input type="range" id="attendee-slider" min="10" max="40" value="28" oninput="calcFinanceSim()" class="w-full accent-volt cursor-pointer h-2 bg-surface-elevated rounded-lg">
+                <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                  <span>10 Pax</span>
+                  <span>25 Pax (Rata-rata)</span>
+                  <span>40 Pax (Penuh)</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                <div class="bg-obsidian p-3 rounded-xl border border-border">
+                  <div class="text-[10px] text-slate-400 font-mono">GROSS TIKET</div>
+                  <div class="text-xs sm:text-sm font-bold text-white mt-1" id="fin-gross">Rp 1.260.000</div>
+                  <div class="text-[9px] text-slate-500">@ Rp 45.000 / pax</div>
+                </div>
+
+                <div class="bg-obsidian p-3 rounded-xl border border-volt/30 bg-volt/5">
+                  <div class="text-[10px] text-volt font-mono font-bold">RITME FEE (2.5%)</div>
+                  <div class="text-xs sm:text-sm font-bold text-volt mt-1" id="fin-ritme">Rp 31.500</div>
+                  <div class="text-[9px] text-slate-400">Platform take rate</div>
+                </div>
+
+                <div class="bg-obsidian p-3 rounded-xl border border-border">
+                  <div class="text-[10px] text-cyan font-mono">FEE COACH (60%)</div>
+                  <div class="text-xs sm:text-sm font-bold text-cyan mt-1" id="fin-coach">Rp 756.000</div>
+                  <div class="text-[9px] text-slate-500">Auto split transfer</div>
+                </div>
+
+                <div class="bg-obsidian p-3 rounded-xl border border-border">
+                  <div class="text-[10px] text-slate-400 font-mono">SEWA STUDIO</div>
+                  <div class="text-xs sm:text-sm font-bold text-slate-300 mt-1">Rp 150.000</div>
+                  <div class="text-[9px] text-slate-500">Flat rate 1.5 jam</div>
+                </div>
+              </div>
+
+              <div class="mt-4 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
+                <div>
+                  <div class="text-xs font-bold text-white">Laba Bersih Kas Komunitas (Host)</div>
+                  <div class="text-[11px] text-slate-400">Otomatis tercatat tanpa rekap Excel manual</div>
+                </div>
+                <div class="font-mono text-base sm:text-lg font-extrabold text-emerald-400" id="fin-net">
+                  Rp 322.500
+                </div>
+              </div>
+            </div>
+
+            <!-- Host Real-Time Dashboard Summary -->
+            <div class="lg:col-span-5 bg-surface-elevated p-6 sm:p-8 rounded-3xl border border-border flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-bold">AUTOMATED SETTLEMENT</span>
+                <h3 class="text-xl font-bold text-white mt-1 mb-3">
+                  Transparansi Finansial Instan
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  Instruktur menerima notifikasi rincian fee secara transparan tepat setelah kelas selesai, menghilangkan kecurigaan atau penundaan transfer.
+                </p>
+
+                <div class="bg-obsidian p-4 rounded-2xl border border-border text-xs space-y-2 font-mono">
+                  <div class="flex justify-between text-slate-400">
+                    <span>Status Rekap:</span>
+                    <span class="text-emerald-400 font-bold">READY TO PAYOUT</span>
+                  </div>
+                  <div class="flex justify-between text-slate-400">
+                    <span>Payment Gateway:</span>
+                    <span class="text-white">Midtrans QRIS (Settled)</span>
+                  </div>
+                  <div class="flex justify-between text-slate-400">
+                    <span>Waktu Proses:</span>
+                    <span class="text-white">Real-time Otomatis</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border text-xs text-slate-400 flex justify-between items-center font-mono">
+                <span>Export format:</span>
+                <span class="text-volt">.XLSX & Google Sheets</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= THE GROWTH FLYWHEEL ================= -->
+    <section class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">PRODUCT-LED GROWTH</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+          The Organic Community Flywheel
+        </h2>
+        <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mb-14">
+          Setiap peserta yang hadir menjadi kanal akuisisi peserta baru tanpa biaya pemasaran berbayar.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
+          
+          <div class="bg-surface p-6 rounded-2xl border border-border">
+            <div class="font-mono text-xs text-volt font-bold mb-2">STEP 01</div>
+            <h4 class="font-bold text-white text-base mb-1">Host Bikin Kelas</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Jadwal berulang aktif dalam 1 menit. Link pendaftaran dibagikan di bio Instagram komunitas.
+            </p>
+          </div>
+
+          <div class="bg-surface p-6 rounded-2xl border border-border">
+            <div class="font-mono text-xs text-cyan font-bold mb-2">STEP 02</div>
+            <h4 class="font-bold text-white text-base mb-1">1-Scan Check-in</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Peserta tiba di lokasi, scan QR cepat di smartphone panitia. Status kehadiran terverifikasi.
+            </p>
+          </div>
+
+          <div class="bg-surface p-6 rounded-2xl border border-border">
+            <div class="font-mono text-xs text-emerald-400 font-bold mb-2">STEP 03</div>
+            <h4 class="font-bold text-white text-base mb-1">SnapFind AI Magic</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Peserta selfie 1x, langsung temukan foto aksinya dalam 300ms dan export format 9:16 IG Story.
+            </p>
+          </div>
+
+          <div class="bg-surface p-6 rounded-2xl border border-border">
+            <div class="font-mono text-xs text-coral font-bold mb-2">STEP 04</div>
+            <h4 class="font-bold text-white text-base mb-1">Viral IG Sharing</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Teman-teman member melihat story berstiker RITME & mendaftar ke batch minggu berikutnya.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FOUNDER SECTION ================= -->
+    <section id="founder" class="py-20 md:py-28 border-b border-border bg-obsidian">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-surface p-8 sm:p-12 rounded-3xl border border-border relative overflow-hidden">
+          <div class="grid md:grid-cols-12 gap-8 items-center">
+            
+            <div class="md:col-span-8">
+              <span class="font-mono text-xs uppercase tracking-widest text-volt font-bold">FOUNDER & EXECUTION CREDIBILITY</span>
+              <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+                Dibangun dari Pengalaman Riil di Lapangan
+              </h2>
+              <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p>
+                  Halo, saya <strong>Fahril Haikal Ilmi Sihabudin</strong> (<a href="https://projectilmi.web.id" class="text-volt hover:underline font-semibold">projectilmi.web.id</a>). Sehari-hari saya bertugas di KPP Pratama Kediri (DJP), aktif mengembangkan inovasi kecerdasan buatan, otomasi sistem kerja berbasis Linux, dan mendampingi komunitas olahraga lokal di Kediri (seperti Poundfit <strong>@poundiri.team</strong>).
+                </p>
+                <p>
+                  RITME bukan sekadar konsep di atas kertas. Mesin biometrik pencarian wajahnya telah kami uji dan kembangkan melalui modul <strong>SnapFind AI</strong> yang mampu memproses ratusan foto resolusi tinggi dengan latensi sub-detik pada infrastruktur hemat biaya.
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-2.5 mt-6 pt-6 border-t border-border text-xs font-mono">
+                <span class="px-3 py-1 rounded-full bg-obsidian border border-border text-slate-300">
+                  ⚡ SnapFind AI Biometrics
+                </span>
+                <span class="px-3 py-1 rounded-full bg-obsidian border border-border text-slate-300">
+                  ⚡ Cloudflare Zero-Cost Edge
+                </span>
+                <span class="px-3 py-1 rounded-full bg-obsidian border border-border text-slate-300">
+                  ⚡ WhatsApp Cloud API Integration
+                </span>
+                <span class="px-3 py-1 rounded-full bg-obsidian border border-border text-volt font-bold">
+                  ⚡ Grassroots Community Proof
+                </span>
+              </div>
+            </div>
+
+            <div class="md:col-span-4 bg-obsidian p-6 rounded-2xl border border-border text-center">
+              <div class="w-24 h-24 mx-auto rounded-full bg-surface-elevated border-2 border-volt p-1 mb-4">
+                <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center font-display font-extrabold text-2xl text-volt">
+                  FI
+                </div>
+              </div>
+              <h3 class="text-base font-bold text-white">Fahril Haikal Ilmi</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Founder & System Architect</p>
+              
+              <div class="mt-6 pt-4 border-t border-border space-y-2 text-xs font-mono">
+                <a href="https://github.com/fahrilmi" target="_blank" class="flex items-center justify-center gap-2 text-slate-300 hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  github.com/fahrilmi
+                </a>
+                <div class="text-slate-400">Kediri, Jawa Timur, Indonesia</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= INVESTOR PITCH CTA & WAITLIST ================= -->
+    <section id="investor-cta" class="py-20 md:py-28 border-b border-border bg-obsidian relative">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-volt/10 border border-volt/30 text-volt text-xs font-mono font-bold mb-4">
+          INVESTOR & PARTNER INQUIRY
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white mb-4">
+          Tertarik Berkolaborasi atau Menguji RITME?
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+          Kami mengundang calon investor, pemilik studio, dan organizer komunitas olahraga untuk mencoba versi private pilot kami di Jawa Timur & Jabodetabek.
+        </p>
+
+        <form id="waitlist-form" onsubmit="handleWaitlistSubmit(event)" class="bg-surface p-6 sm:p-8 rounded-3xl border border-border text-left shadow-2xl">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">NAMA LENGKAP / ORGANISASI *</label>
+              <input type="text" id="wl-name" required placeholder="Nama Anda atau Partner" class="w-full bg-obsidian border border-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-volt">
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">NO. WHATSAPP AKTIF *</label>
+              <input type="tel" id="wl-wa" required placeholder="08xxxxxxxxxx" class="w-full bg-obsidian border border-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-volt font-mono">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">PERAN / INSTITUSI</label>
+              <select id="wl-role" class="w-full bg-obsidian border border-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-volt">
+                <option value="Host Komunitas Olahraga">Host Komunitas Olahraga</option>
+                <option value="Pemilik Studio / Venue">Pemilik Studio / Venue</option>
+                <option value="Angel Investor / VC">Angel Investor / VC</option>
+                <option value="Brand Sponsor / Partner">Brand Sponsor / Partner</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">KOTA OPERASIONAL</label>
+              <input type="text" id="wl-city" placeholder="Contoh: Kediri, Surabaya, Jakarta" class="w-full bg-obsidian border border-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-volt">
+            </div>
+          </div>
+
+          <button type="submit" id="wl-submit-btn" class="w-full bg-volt hover:bg-volt-hover text-obsidian py-4 rounded-full font-bold text-sm tracking-tight transition-all btn-pressable ring-volt-subtle">
+            Kirimkan Pengajuan & Akses Private Demo 🚀
+          </button>
+        </form>
+
+        <div id="wl-success-msg" class="hidden mt-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-sm font-semibold">
+          🎉 Terima kasih! Data Anda telah tercatat di sistem Project Ilmi. Founder kami akan segera menghubungi via WhatsApp.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FULL SPECIFICATION MODAL (PRD, TRD, STYLE) ================= -->
+    <div id="specs-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 sm:p-6">
+      <div class="bg-surface border border-border w-full max-w-4xl max-h-[90vh] rounded-3xl flex flex-col shadow-2xl overflow-hidden">
+        
+        <div class="p-5 sm:p-6 border-b border-border flex items-center justify-between bg-surface-elevated">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-volt"></span>
+            <h3 class="font-display font-bold text-lg text-white">RITME Technical & Business Documentation</h3>
+          </div>
+          <button onclick="closeDocModal()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-obsidian transition-colors btn-pressable">
+            ✕
+          </button>
+        </div>
+
+        <div class="flex border-b border-border bg-obsidian px-6 pt-3 gap-2 text-xs font-mono overflow-x-auto clean-scrollbar">
+          <button onclick="openDocTab('prd')" id="doc-btn-prd" class="px-4 py-2 border-b-2 border-volt text-volt font-bold">
+            PRD & Investor Specs
+          </button>
+          <button onclick="openDocTab('style')" id="doc-btn-style" class="px-4 py-2 border-b-2 border-transparent text-slate-400 hover:text-white">
+            Emil Kowalski Design Craft
+          </button>
+          <button onclick="openDocTab('tech')" id="doc-btn-tech" class="px-4 py-2 border-b-2 border-transparent text-slate-400 hover:text-white">
+            Technical Architecture
+          </button>
+        </div>
+
+        <div class="p-6 sm:p-8 overflow-y-auto font-sans text-sm text-slate-300 space-y-6 leading-relaxed clean-scrollbar" id="modal-doc-content">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="p-4 border-t border-border bg-obsidian flex justify-between items-center text-xs text-slate-400 font-mono px-6">
+          <span>Version: 2.0.0-investor-ready • projectilmi.web.id</span>
+          <button onclick="closeDocModal()" class="bg-surface-elevated hover:bg-slate-700 text-white px-5 py-1.5 rounded-full btn-pressable">
+            Tutup
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-border bg-obsidian py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-volt flex items-center justify-center font-display font-extrabold text-obsidian text-base">
+          R
+        </div>
+        <div>
+          <div class="font-display font-bold text-white text-sm">RITME by Project Ilmi</div>
+          <div class="text-[11px] text-slate-500 font-mono">The Operating System for Recurring Community Fitness</div>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-400 text-center sm:text-right font-mono">
+        <div>© 2026 Project Ilmi (Fahril Haikal Ilmi Sihabudin). All rights reserved.</div>
+        <div class="text-slate-500 mt-0.5">Crafted with Emil Kowalski Design Principles • 2.5% Take Rate Model</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT JAVASCRIPT ================= -->
+  <script>
+    // Tab Switcher for Interactive Lab
+    function switchTab(tabName) {
+      const tabs = ['booking', 'snapfind', 'streak', 'finance'];
+      tabs.forEach(t => {
+        const content = document.getElementById(`tab-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabName) {
+          content.classList.remove('hidden');
+          content.classList.add('block');
+          btn.className = "px-4 py-2 rounded-full text-xs font-bold transition-all bg-volt text-obsidian shadow-sm btn-pressable";
+        } else {
+          content.classList.remove('block');
+          content.classList.add('hidden');
+          btn.className = "px-4 py-2 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white btn-pressable";
+        }
+      });
+    }
+
+    // Dynamic Price Calculator
+    function updateBookingCalc() {
+      const isSingle = document.querySelector('input[name="ticket_type"]:checked').value === 'single';
+      const priceDisplay = document.getElementById('btn-price-display');
+      const passDisplay = document.getElementById('card-pass-display');
+
+      if (isSingle) {
+        priceDisplay.innerText = 'Rp 45.000';
+        passDisplay.innerText = 'Single Drop-in';
+      } else {
+        priceDisplay.innerText = 'Rp 150.000';
+        passDisplay.innerText = 'Monthly Pass (4x)';
+      }
+    }
+
+    // Booking Simulation
+    function simulateBookingCheckout() {
+      const name = document.getElementById('buyer-name').value || 'Peserta';
+      const wa = document.getElementById('buyer-wa').value || '08xxxxxxxx';
+      
+      document.getElementById('card-name-display').innerText = name;
+      const code = 'RITME-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('ticket-code-display').innerText = code;
+
+      const seatsElem = document.getElementById('booked-seats');
+      let seats = parseInt(seatsElem.innerText);
+      if (seats < 30) {
+        seatsElem.innerText = seats + 1;
+      }
+
+      alert(`✅ Berhasil! Tiket simulasi telah diterbitkan untuk ${name} (${wa}). Kode tiket: ${code}. QR Pass aktif.`);
+    }
+
+    // Face Search Biometrics Simulation
+    function runFaceSearchSim() {
+      const btn = document.getElementById('btn-scan-face');
+      const count = document.getElementById('photo-match-count');
+      btn.innerText = '⏳ Mengekstrak 512-D Face Embeddings...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerText = '✓ Pencocokan Selesai (240ms)';
+        btn.disabled = false;
+        count.innerText = '6 Foto';
+        alert('✨ SnapFind AI berhasil menemukan 6 foto resolusi tinggi yang memuat wajah Anda dalam waktu 240 milidetik!');
+      }, 650);
+    }
+
+    // Financial Calculation with 2.5% Platform Take Rate
+    function calcFinanceSim() {
+      const slider = document.getElementById('attendee-slider');
+      const val = parseInt(slider.value);
+      document.getElementById('slider-val').innerText = `${val} Peserta`;
+
+      const gross = val * 45000;
+      const ritmeFee = gross * 0.025; // 2.5% Platform Fee
+      const coach = gross * 0.60;
+      const venue = 150000;
+      const net = gross - ritmeFee - coach - venue;
+
+      const formatIDR = (num) => 'Rp ' + Math.round(num).toLocaleString('id-ID');
+
+      document.getElementById('fin-gross').innerText = formatIDR(gross);
+      document.getElementById('fin-ritme').innerText = formatIDR(ritmeFee);
+      document.getElementById('fin-coach').innerText = formatIDR(coach);
+      document.getElementById('fin-net').innerText = formatIDR(net);
+    }
+
+    // Waitlist Form Handler
+    function handleWaitlistSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('wl-name').value;
+      const wa = document.getElementById('wl-wa').value;
+      const role = document.getElementById('wl-role').value;
+      const city = document.getElementById('wl-city').value;
+
+      const submission = { name, wa, role, city, date: new Date().toISOString() };
+      
+      const list = JSON.parse(localStorage.getItem('ritme_investor_leads') || '[]');
+      list.push(submission);
+      localStorage.setItem('ritme_investor_leads', JSON.stringify(list));
+
+      document.getElementById('waitlist-form').reset();
+      document.getElementById('wl-success-msg').classList.remove('hidden');
+    }
+
+    // Document Modal Contents
+    const docData = {
+      prd: `
+        <h4 class="text-xl font-bold text-white mb-2 font-display">Product Requirement Document (PRD) — Investor Edition</h4>
+        <p class="text-slate-300 mb-4"><strong>Visi & Market Fit:</strong> RITME memodernisasi 45.000+ komunitas olahraga berulang di Indonesia yang saat ini mengandalkan proses manual di WhatsApp dan Google Drive.</p>
+        
+        <h5 class="text-xs font-mono font-bold text-volt uppercase mt-4 mb-2">Model Bisnis & Unit Economics:</h5>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+          <li><strong>Zero Upfront Cost:</strong> Komunitas dapat bergabung gratis tanpa biaya langganan bulanan.</li>
+          <li><strong>2.5% Platform Take Rate:</strong> Dipotong otomatis dari setiap tiket yang berhasil dibayarkan melalui QRIS/Virtual Account.</li>
+          <li><strong>Studio Pro Tier (Rp 299.000/bln + 1.8% Fee):</strong> Untuk studio komersial dengan multi-instruktur dan custom WhatsApp sender.</li>
+        </ul>
+
+        <h5 class="text-xs font-mono font-bold text-cyan uppercase mt-4 mb-2">Market Size (Indonesia):</h5>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+          <li><strong>TAM:</strong> $2.4 Miliar wellness & fitness market.</li>
+          <li><strong>SAM:</strong> Rp 5.2 Triliun GMV potensial dari 45.000 komunitas independen.</li>
+          <li><strong>SOM (18 Bulan Pertama):</strong> 1.500 komunitas di Jatim & Jabodetabek (~Rp 175.5 Miliar GMV / Rp 4.38 Miliar ARR platform).</li>
+        </ul>
+      `,
+      style: `
+        <h4 class="text-xl font-bold text-white mb-2 font-display">Emil Kowalski Design Engineering & Impeccable Standards</h4>
+        <p class="text-slate-300 mb-4">Mengintegrasikan filosofi desain Emil Kowalski (mantan desainer Vercel/Linear) untuk interaktivitas dan tactile micro-interactions:</p>
+        
+        <h5 class="text-xs font-mono font-bold text-volt uppercase mt-4 mb-2">Pilar Rekayasa Desain:</h5>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+          <li><strong>Responsive Active Scaling:</strong> <code>transform: scale(0.97)</code> pada status <code>:active</code> di setiap tombol dan kontrol.</li>
+          <li><strong>Custom Easing Curve:</strong> Menggunakan <code>cubic-bezier(0.23, 1, 0.32, 1)</code> untuk animasi masuk yang instan dan tajam.</li>
+          <li><strong>Never scale(0):</strong> Animasi transisi elemen dimulai dari minimal <code>scale(0.95)</code> dan <code>opacity: 0</code> agar terasa organik.</li>
+          <li><strong>Zero Generic AI Slop:</strong> Bebas gradien ungu generik. Menggunakan kontras presisi obsidian hitam dengan Volt Pulse (#D4FF00) dan Cyber Cyan (#00F0FF).</li>
+        </ul>
+      `,
+      tech: `
+        <h4 class="text-xl font-bold text-white mb-2 font-display">Technical Requirement Document (TRD)</h4>
+        <p class="text-slate-300 mb-4">Arsitektur Hybrid Serverless & Micro-backend dengan biaya mendekati Rp 0 pada tahap awal.</p>
+        
+        <h5 class="text-xs font-mono font-bold text-cyan uppercase mt-4 mb-2">Komponen Arsitektur:</h5>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+          <li><strong>Frontend:</strong> Next.js / PWA di-deploy di Cloudflare Pages (Gratis, global edge, 0 egress).</li>
+          <li><strong>AI Biometrics:</strong> SnapFind AI engine dengan embedding MobileFaceNet 512-dimensi dan pencarian vektor <code>pgvector</code> HNSW cosine similarity (&lt; 250ms).</li>
+          <li><strong>Penyimpanan Foto:</strong> Cloudflare R2 Object Storage dengan $0 Egress Bandwidth Fee.</li>
+          <li><strong>WhatsApp Pipeline:</strong> WhatsApp Cloud API untuk pengiriman tiket QR instan, pengingat H-2 jam, dan notifikasi foto otomatis.</li>
+          <li><strong>Payment Gateway:</strong> Integrasi Midtrans Snap QRIS Dinamis & Virtual Account.</li>
+        </ul>
+      `
+    };
+
+    function openDocTab(docKey) {
+      document.getElementById('specs-modal').classList.remove('hidden');
+      const tabs = ['prd', 'style', 'tech'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`doc-btn-${t}`);
+        if (t === docKey) {
+          btn.className = "px-4 py-2 border-b-2 border-volt text-volt font-bold";
+        } else {
+          btn.className = "px-4 py-2 border-b-2 border-transparent text-slate-400 hover:text-white";
+        }
+      });
+      document.getElementById('modal-doc-content').innerHTML = docData[docKey];
+    }
+
+    function closeDocModal() {
+      document.getElementById('specs-modal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
